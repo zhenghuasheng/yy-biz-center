@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Class-Path: rocketmq-client-3.2.6.jar rocketmq-remoting-3.2.6.jar rock
+ etmq-common-3.2.6.jar netty-all-4.0.25.Final.jar aspectjweaver-1.6.8.
+ jar jackson-annotations-2.3.0.jar jackson-core-2.3.3.jar jackson-data
+ bind-2.3.3.jar lombok-1.14.2.jar simple-spring-memcached-3.5.0.jar xm
+ emcached-2.0.0.jar xmemcached-provider-3.5.0.jar
+

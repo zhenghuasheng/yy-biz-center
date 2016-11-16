@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringFacetInspection -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <bean id="appService" class="com.etong.pt.service.impl.AppServiceImpl">
+        <property name="appDao" ref="appDao"/>
+    </bean>
+
+    <bean id="orderService" class="com.etong.pt.service.impl.OrderServiceImpl">
+        <property name="orderDao" ref="orderDao"/>
+        <property name="autoService" ref="autoService"/>
+        <property name="bargainDao" ref="bargainDao"/>
+        <property name="ptUserService" ref="ptUserService"/>
+        <property name="smsHelper" ref="smsHelper"/>
+        <property name="sendPhone" value="13973198025"/>
+        <property name="smsContent" value="已有客户提交购车订单！客户电话："/>
+    </bean>
+
+    <bean id="smsHelper" class="com.etong.pt.utility.SmsHelper"/>
+
+
+    <bean id="massageConsumer" class="com.etong.pt.service.impl.MessageImpl">
+        <property name="orderDao" ref="orderDao"/>
+        <property name="cacheClient" ref="defaultMemcachedClient"/>
+        <property name="namesrvAddr" value="msg.com:9876"/>
+    </bean>
+
+    <bean id="hotVehicleService" class="com.etong.pt.service.impl.HotVehicleServiceImpl">
+        <property name="hotVehicleDao" ref="hotVehicleDao"/>
+        <property name="autoService" ref="autoService"/>
+    </bean>
+
+    <bean id="collectionService" class="com.etong.pt.service.impl.CollectionServiceImpl">
+        <property name="collectionDao" ref="collectionDao"/>
+        <property name="autoService" ref="autoService"/>
+    </bean>
+
+    <bean id="activitiesService" class="com.etong.pt.service.impl.ActivitiesServiceImpl">
+        <property name="activitiesDao" ref="activitiesDao"/>
+    </bean>
+
+    <bean id="salseVehicleService" class="com.etong.pt.service.impl.SalesVehicleServiceImpl">
+        <property name="salesVehicleDao" ref="salesVehicleDao"/>
+        <property name="autoService" ref="autoService"/>
+    </bean>
+
+    <bean id="carLeverService" class="com.etong.pt.service.impl.CarLeverServiceImpl">
+        <property name="carLeverDao" ref="carLeverDao"/>
+    </bean>
+
+    <bean id="cmVehicleService" class="com.etong.pt.service.impl.CmVehicleServiceImpl">
+        <property name="cmVehicleDao" ref="cmVehicleDao"/>
+        <property name="autoService" ref="autoService"/>
+        <property name="appVehicleService" ref="appVehicleService"/>
+    </bean>
+
+    <bean id="bargainServcie" class="com.etong.pt.service.impl.BargainServiceImpl">
+        <property name="bargainDao" ref="bargainDao"/>
+    </bean>
+
+    <bean id="sysItemService" class="com.etong.pt.service.impl.SysItemServiceImpl">
+        <property name="sysItemDao" ref="sysItemDao"/>
+    </bean>
+
+    <bean id="appVehicleService" class="com.etong.pt.service.impl.AppVehicleServiceImpl">
+        <property name="appVehicleDao" ref="appVehicleDao"/>
+        <property name="autoService" ref="autoService"/>
+    </bean>
+
+    <bean id="sysBannerService" class="com.etong.pt.service.impl.SysBannerServiceImpl">
+        <property name="sysBannerDao" ref="sysBannerDao"/>
+    </bean>
+    <bean id="userResService" class="com.etong.pt.service.impl.UserResServiceImpl">
+        <property name="userResponseDao" ref="userResponseDao"/>
+    </bean>
+    <bean id="dealerService" class="com.etong.pt.service.impl.DealerServiceImpl">
+        <property name="dealerDao" ref="dealerDao"/>
+    </bean>
+
+    <!--
+    <dubbo:service cluster="failfast" interface="com.etong.pt.service.OrderService" ref="orderService" timeout="5000"/>
+    -->
+    <dubbo:reference id="appDao" interface="com.etong.pt.dao.AppDao"/>
+    <dubbo:reference id="orderDao" interface="com.etong.pt.dao.OrderDao" />
+    <dubbo:reference id="collectionDao" interface="com.etong.pt.dao.CollectionDao"/>
+    <dubbo:reference id="hotVehicleDao" interface="com.etong.pt.dao.HotVehicleDao"/>
+    <dubbo:reference id="activitiesDao" interface="com.etong.pt.dao.ActivitiesDao"/>
+    <dubbo:reference id="salesVehicleDao" interface="com.etong.pt.dao.SalesVehicleDao"/>
+    <dubbo:reference id="carLeverDao" interface="com.etong.pt.dao.CarLeverDao"/>
+    <dubbo:reference id="cmVehicleDao" interface="com.etong.pt.dao.CmVehicleDao"/>
+    <dubbo:reference id="bargainDao" interface="com.etong.pt.dao.BargainDao"/>
+    <dubbo:reference id="sysItemDao" interface="com.etong.pt.dao.SysItemDao"/>
+    <dubbo:reference id="appVehicleDao" interface="com.etong.pt.dao.AppVehicleDao"/>
+    <dubbo:reference id="sysBannerDao" interface="com.etong.pt.dao.SysBannerDao"/>
+    <dubbo:reference id="userResponseDao" interface="com.etong.pt.dao.UserResponseDao"/>
+    <dubbo:reference id="dealerDao" interface="com.etong.pt.dao.DealerDao"/>
+
+   <!--<dubbo:protocol name="dubbo">-->
+       <!--<dubbo:parameter key="token" value="123456"/>-->
+   <!--</dubbo:protocol>-->
+
+    <!--<dubbo:reference id="ptUserData" interface="com.etong.pt.data.user.PtUserData" timeout="15000"/>
+    <dubbo:reference id="autoService" interface="com.etong.dc.auto.service.AutoService" timeout="15000" protocol="dubbo"/>
+    <dubbo:reference id="ptUserService" interface="com.etong.pt.user.PtUserService" timeout="15000"/>
+    <dubbo:reference id="infoService" interface="com.etong.info.service.InfoService" timeout="15000"/>-->
+
+    <dubbo:reference id="ptUserData" interface="com.etong.pt.data.user.PtUserData" url="dubbo://192.168.10.38:30890"/>
+    <dubbo:reference id="autoService" interface="com.etong.dc.auto.service.AutoService" protocol="dubbo" url="dubbo://192.168.10.250:30991" timeout="15000"/>
+    <dubbo:reference id="ptUserService" interface="com.etong.pt.user.PtUserService" url="dubbo://192.168.10.38:30891"/>
+    <dubbo:reference id="infoService" interface="com.etong.info.service.InfoService" url="dubbo://192.168.10.38:30882"/>
+</beans>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringFacetInspection -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <bean id="appDao" class="com.etong.pt.dao.impl.AppDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="orderDao" class="com.etong.pt.dao.impl.OrderDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+
+    <bean id="hotVehicleDao" class="com.etong.pt.dao.impl.HotVehicleDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="collectionDao" class="com.etong.pt.dao.impl.CollectionDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="activitiesDao" class="com.etong.pt.dao.impl.ActivitiesDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="salesVehicleDao" class="com.etong.pt.dao.impl.SalesVehicleDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="carLeverDao" class="com.etong.pt.dao.impl.CarLeverDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+    </bean>
+
+    <bean id="cmVehicleDao" class="com.etong.pt.dao.impl.CmVehicleDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+    </bean>
+
+    <bean id="bargainDao" class="com.etong.pt.dao.impl.BargainDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="sysItemDao" class="com.etong.pt.dao.impl.SysItemDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="appVehicleDao" class="com.etong.pt.dao.impl.AppVehicleDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="sysBannerDao" class="com.etong.pt.dao.impl.SysBannerDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="userResponseDao" class="com.etong.pt.dao.impl.UserResponseDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <bean id="dealerDao" class="com.etong.pt.dao.impl.DealerDaoImpl">
+        <property name="dbManager" ref="dbManagerImpl"/>
+        <property name="dbIndexNum" ref="ptIndexImpl"/>
+    </bean>
+
+    <!--<dubbo:provider token="123456"/>-->
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service cluster="failfast"  interface="com.etong.pt.dao.OrderDao" ref="orderDao" timeout="5000" />
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.HotVehicleDao" ref="hotVehicleDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.AppDao" ref="appDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.CollectionDao" ref="collectionDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.ActivitiesDao" ref="activitiesDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.SalesVehicleDao" ref="salesVehicleDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.CarLeverDao" ref="carLeverDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.CmVehicleDao" ref="cmVehicleDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.BargainDao" ref="bargainDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.SysItemDao" ref="sysItemDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.AppVehicleDao" ref="appVehicleDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.SysBannerDao" ref="sysBannerDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.UserResponseDao" ref="userResponseDao" timeout="5000"/>
+    <dubbo:service cluster="failfast" interface="com.etong.pt.dao.DealerDao" ref="dealerDao" timeout="5000"/>
+</beans>
